@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guess the Number Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://marketplace.canva.com/EAE_NRav_uY/1/0/1600w/canva-red-neon-organized-desktop-gaming-background---desktop-wallpaper-2eq-ewMjw4U.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  input[type="number"] {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+
+  .incorrect {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color: white;">Guess the Number Game</h1>
+    <p  style="color: yellow;">Guess a number between 1 and 50:</p>
+    <input type="number" id="guessInput" min="1" max="50">
+    <button onclick="checkGuess()">Guess</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    // Generate random number between 1 and 50
+    let correctNumber = getRandomNumber();
+
+    function getRandomNumber() {
+      return Math.floor(Math.random() * 50) + 1;
+    }
+
+    function checkGuess() {
+      // Get user's guess from input
+      let userGuess = parseInt(document.getElementById('guessInput').value);
+      let message = document.getElementById('message');
+
+      // Check if the guess is correct, too high, or too low
+      if (userGuess === correctNumber) {
+        message.innerHTML = `Congratulations! You guessed the correct number (${correctNumber})!`;
+        message.className = 'correct';
+      } else if (userGuess > correctNumber) {
+        message.innerHTML = 'Wrong guess. Try a smaller number.';
+        message.className = 'incorrect';
+      } else {
+        message.innerHTML = 'Wrong guess. Try a larger number.';
+        message.className = 'incorrect';
+      }
+    }
+  </script>
+</body>
+</html>
